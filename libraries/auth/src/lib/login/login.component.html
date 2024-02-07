@@ -1,1 +1,19 @@
 <p>login works!</p>
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="first-name">Email </label>
+            <input id="first-name" type="text" formControlName="email">
+            <!-- <span *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">hello, please enter a valid email</span> -->
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">hello, please fill up with a valid email</span>
+        </div>
+        <div>
+            <label for="last-name">Password </label>
+            <input id="last-name" type="password" formControlName="password">
+            <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched ">ooiii...enter your password 😼</span>
+        </div>
+        <label for="remember">Password </label>
+        <input id="remember" type="checkbox" formControlName="rememberMe">
+       <button type="submit">Submit</button>
+      </form>
+</section>

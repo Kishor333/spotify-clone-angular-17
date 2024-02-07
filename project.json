@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-devkit/build-angular:browser-esbuuld",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/spotify-clone-angular-17/browser",

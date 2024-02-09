@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 // interface LoginForm {
 //   email: string;
 //   password: string;
@@ -9,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 @Component({
   selector: 'spotify-clone-angular-17-login',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,InputTextModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })

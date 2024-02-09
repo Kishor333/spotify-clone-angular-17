@@ -1,10 +1,14 @@
 <p>login works!</p>
 <section>
+    {{loginForm.get('email')?.errors | json}}
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input pInputText type="text" class="p-inputtext-sm" placeholder="Small" />
+<input pInputText type="text" placeholder="Normal"  />
+<input pInputText type="text" class="p-inputtext-lg" placeholder="Large"  />
         <div>
             <label for="first-name">Email </label>
             <input id="first-name" type="text" formControlName="email">
-            <!-- <span *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">hello, please enter a valid email</span> -->
+            <span *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">hello, please enter a valid email</span>
             <span *ngIf="loginForm.get('email')?.errors?.['email']">hello, please fill up with a valid email</span>
         </div>
         <div>

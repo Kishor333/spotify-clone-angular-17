@@ -1,12 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+@layer tailwind-base,  primeng, tailwind-utilities;
+
+@layer tailwind-base {
+   @tailwind base;
+}
+
+@layer tailwind-utilities {
+   @tailwind components;
+   @tailwind utilities;
+}
 @import './assets/theme/theme';
 @import './assets/theme/variable';
 
+/* Order */
+// @layer reset, primeng;
+// @layer tailwind-base,  tailwind-utilities, primeng;
 
+/* Reset CSS */
+// @layer reset {
+//     button,
+//     input {
+//         /* CSS to Reset */
+//     }
+//    //  h1 {
+//    //    all: unset;
+//    //  }
+// }
 .vom-container {
    width: 100px;
    height: 100px;
    background-color:  $pink-red;
+   // @apply m-6;
 }
 
 .vom-container2 {

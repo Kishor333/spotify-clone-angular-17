@@ -3,7 +3,9 @@
 // @tailwind components;
 // @tailwind utilities;
 
-@layer tailwind-base,  primeng, tailwind-utilities;
+
+//setup for priimeNg and tailwind compability
+@layer tailwind-base, primeng, tailwind-utilities;
 
 @layer tailwind-base {
    @tailwind base;
@@ -13,6 +15,8 @@
    @tailwind components;
    @tailwind utilities;
 }
+
+
 @import './assets/theme/theme';
 @import './assets/theme/variable';
 
@@ -30,16 +34,12 @@
 //    //    all: unset;
 //    //  }
 // }
-.vom-container {
-   width: 100px;
-   height: 100px;
-   background-color:  $pink-red;
-   // @apply m-6;
+
+
+:root {
+   font-size: 16px;
 }
 
-.vom-container2 {
-    width: 100px;
-    height: 100px;
-    background-color:  $carbon-gray-90;
-    // background-color:  var(--carbon-gray);
- }
+body {
+   font-size: 1rem;
+}

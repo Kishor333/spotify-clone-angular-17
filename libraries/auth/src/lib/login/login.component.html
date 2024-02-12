@@ -1,1 +1,44 @@
-<p>login works!</p>
+<p class="mt-18 border">login works!</p>
+<section class="mt-16">
+  {{ loginForm.get('email')?.errors | json }}
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- <input pInputText type="text" class="p-inputtext-sm" placeholder="Small" />
+        <input pInputText type="text" placeholder="Normal"  />
+        <input pInputText type="text" class="p-inputtext-lg" placeholder="Large"  /> -->
+    <div class="mt-16">
+      <label for="first-name">Email </label>
+      <input
+        pInputText
+        id="first-name"
+        type="text"
+        formControlName="email"
+        class="p-inputtext-sm"
+        placeholder="example@example.ex"
+      />
+      <!-- <input id="first-name" type="text" formControlName="email"> -->
+      <span
+        *ngIf="
+          loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+        "
+        >hello, please enter a valid email</span
+      >
+      <span *ngIf="loginForm.get('email')?.errors?.['email']"
+        >hello, please fill up with a valid email</span
+      >
+    </div>
+    <div>
+      <label for="last-name">Password </label>
+      <input id="last-name" type="password" formControlName="password" />
+      <span
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched
+        "
+        >ooiii...enter your password 😼</span
+      >
+    </div>
+    <label for="remember">Password </label>
+    <input id="remember" type="checkbox" formControlName="rememberMe" />
+    <button type="submit">Submit</button>
+  </form>
+</section>

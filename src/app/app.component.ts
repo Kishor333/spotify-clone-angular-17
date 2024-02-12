@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   standalone: true,
@@ -12,8 +12,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   title = 'spotify-clone-angular-17';
-  apiUrl = 'https://api.spotify.com/v1/albums';
-  clientId = ''; // Replace with your client id
+  apiUrl = '';
+  clientId = 'ae03b3b15f354f278d9516bccac5f1e8'; // Replace with your client id
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
 

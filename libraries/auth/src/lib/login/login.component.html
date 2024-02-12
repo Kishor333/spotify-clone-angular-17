@@ -1,4 +1,4 @@
-<p class="mt-18 border p-36">login works!</p>
+<p class="mt-18 border">login works!</p>
 <section class="mt-16">
   {{ loginForm.get('email')?.errors | json }}
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

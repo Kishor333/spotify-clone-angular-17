@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Album } from '@spotify-clone-angular-17/shared';
 import { Observable } from 'rxjs';
 import { BaseFacadeService } from '../../../../shared/src/lib/services/base-facade.service';
 import { AlbumApiService } from './album-api.service';
@@ -14,7 +15,7 @@ export class AlbumFacadeService extends BaseFacadeService<AlbumStateService, Alb
     super(albumStateService)
   }
 
-  getAlbumById(id: string): Observable<any> {
+  getAlbumById(id: string): Observable<Album> {
     return this.albumApiService.getAlbumById(id);
   }
 }

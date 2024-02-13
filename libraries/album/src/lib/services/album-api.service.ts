@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Album } from '@spotify-clone-angular-17/shared';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,11 +11,11 @@ export class AlbumApiService {
   constructor(private httpClient: HttpClient) {
 }
 
-getAlbumById(id: string): Observable<any> {
+getAlbumById(id: string): Observable<Album> {
   return this.httpClient.get(`https://api.spotify.com/v1/albums/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('spotify_access_token')}`
       }
-    });    
+    }) as unknown as Observable<Album>;    
 }
 }

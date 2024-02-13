@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from '@spotify-clone-angular-17/auth';
+import { Album } from '@spotify-clone-angular-17/shared';
 import { SharedFacadeService } from '../../libraries/shared/src/lib/services/shared-facade.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { SharedFacadeService } from '../../libraries/shared/src/lib/services/sha
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+  albums:Album[] = [];
   
   constructor(private sharedFacadeService: SharedFacadeService){
 
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
       
       this.sharedFacadeService.getMultipleAlbums('382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc,6Z1zv6Hw9bdvSoxI5uYk2h')
       .subscribe((albums)=>{
+        this.albums = albums.albums;
         console.log('whole Album:',albums);
       })
     }

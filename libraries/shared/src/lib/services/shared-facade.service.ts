@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Album } from '../models/models';
 import { SharedStoreEnum } from '../models/shared.store';
 import { BaseFacadeService } from './base-facade.service';
 import { SharedApiService } from './shared-api.service';
@@ -16,7 +17,7 @@ export class SharedFacadeService extends BaseFacadeService<SharedStateService, S
     super(sharedStateService);
   }
 
-  getMultipleAlbums(ids: string): Observable<any> {
+  getMultipleAlbums(ids: string): Observable<{albums: Album[]}> {
     return this.sharedApiService.getMultipleAlbums(ids);
   }
 }

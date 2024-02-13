@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   
   title = 'spotify-clone-angular-17';
   apiUrl = 'https://api.spotify.com/v1/albums';
-  clientId = ''; // Replace with your client id
+  clientId = 'ae03b3b15f354f278d9516bccac5f1e8'; // Replace with your client id
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
 
@@ -32,18 +32,11 @@ export class LoginComponent implements OnInit {
       this.redirectToAuthCodeFlow(this.clientId);
     } else {
       await this.getAccessToken(this.clientId, this.code);
-      this.getAlbumById();
+      // this.getAlbumById();
     }
   }
 
-  async getAlbumById(): Promise<void> {
-    const album = await this.http.get(`${this.apiUrl}/4aawyAB9vmqN3uQ7FjRGTy`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('spotify_access_token')}`
-      }
-    }).toPromise();
-    console.log(album);
-  }
+ 
 
   async redirectToAuthCodeFlow(clientId: string) {
     const verifier = this.generateCodeVerifier(128);

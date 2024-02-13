@@ -25,12 +25,13 @@ export class authorizeGuardGuard {
   constructor(
     public router: Router
   ) {}
-  activate = false;
+  
   canActivate(): boolean {
-    if (this.activate) {
+    if (localStorage.getItem('spotify_access_token')) {
+      this.router.navigate(['album']);
       return true;
     } else {
-      // this.router.navigate(['login']);
+      this.router.navigate(['login']);
       return false;
     }
   } 

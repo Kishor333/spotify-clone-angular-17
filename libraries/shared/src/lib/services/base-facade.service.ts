@@ -7,23 +7,25 @@ export class BaseFacadeService<T, V> {
     this.currentStateService = state;
   }
 
+  //@ts-ignore
   initialize = (): void => this.currentStateService['initialState']();
 
+  //@ts-ignore
   stateChange = (): Observable<V> => this.currentStateService['stateChanged'];
 
-  updateSpecificState = <U>(data: U, stateKey: string): void =>
-    this.currentStateService['updateSpecificState']<U>(data, stateKey);
+  //@ts-ignore
+  updateSpecificState = <U>(data: U, stateKey: string): void => this.currentStateService['updateSpecificState']<U>(data, stateKey);
 
+  //@ts-ignore
   // eslint-disable-next-line max-len
-  specificStateChange = <U>(stateKey: string, allowFilter: boolean = true): Observable<U> =>
-    this.currentStateService['specificStateChange']<U>(stateKey, allowFilter);
+  specificStateChange = <U>(stateKey: string, allowFilter: boolean = true): Observable<U> => this.currentStateService['specificStateChange']<U>(stateKey, allowFilter);
 
-  stateChangeWithStarter = <U>(stateKey: string, allowFilter = true): Observable<U> =>
-    this.currentStateService['stateChangesWithStarter']<U>(stateKey, allowFilter);
+  //@ts-ignore
+  stateChangeWithStarter = <U>(stateKey: string, allowFilter = true): Observable<U> => this.currentStateService['stateChangesWithStarter']<U>(stateKey, allowFilter);
 
-  specificGlobalStateChange = <U>(stateKey: string): Observable<U> =>
-    this.currentStateService['specificGlobalStateChange']<U>(stateKey);
+  //@ts-ignore
+  specificGlobalStateChange = <U>(stateKey: string): Observable<U> => this.currentStateService['specificGlobalStateChange']<U>(stateKey);
 
-  getSpecificState = <U>(state?: string): U =>
-    state ? this.currentStateService['getStateProperty'](state) : this.currentStateService['getSpecificState']();
+  //@ts-ignore
+  getSpecificState = <U>(state?: string): U => state ? this.currentStateService['getStateProperty'](state) : this.currentStateService['getSpecificState']();
 }

@@ -1,0 +1,9 @@
+{
+  "name": "album",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libraries/album/src",
+  "prefix": "spotify-clone-angular-17",
+  "tags": [],
+  "projectType": "library",
+  "targets": {}
+}

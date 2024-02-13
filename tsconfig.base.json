@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@spotify-clone-angular-17/album": ["libraries/album/src/index.ts"],
       "@spotify-clone-angular-17/auth": ["libraries/auth/src/index.ts"],
       "@spotify-clone-angular-17/security": ["libraries/security/src/index.ts"],
       "@spotify-clone-angular-17/shared": ["libraries/shared/src/index.ts"]

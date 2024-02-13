@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { ENVIRONMENT } from '../../../../../env';
 // interface LoginForm {
 //   email: string;
 //   password: string;
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   
   title = 'spotify-clone-angular-17';
   apiUrl = 'https://api.spotify.com/v1/albums';
-  clientId = 'ae03b3b15f354f278d9516bccac5f1e8'; // Replace with your client id
+  clientId = ENVIRONMENT.SPOTIFY_CLIENT_ID; // Replace with your client id
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
 

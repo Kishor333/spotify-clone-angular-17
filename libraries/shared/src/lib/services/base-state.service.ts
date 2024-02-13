@@ -13,8 +13,8 @@ export class BaseStateService<T> extends ObservableStore<T> {
 
   specificStateChange<U>(stateKey: string, allowFilter = true): Observable<U> {
     return this.stateWithPropertyChanges.pipe(
-      filter((stateChange) => !allowFilter || (allowFilter && !!stateChange.stateChanges[stateKey])),
-      map((stateChange) => stateChange.stateChanges[stateKey])
+      //@ts-ignore
+      filter((stateChange) => !allowFilter || (allowFilter && !!stateChange.stateChanges[stateKey])),map((stateChange) => stateChange.stateChanges[stateKey])
     );
   }
 
@@ -26,15 +26,15 @@ export class BaseStateService<T> extends ObservableStore<T> {
   stateChangesWithStarter<U>(stateKey: string, allowFilter: boolean = true): Observable<U> {
     return this.stateWithPropertyChanges.pipe(
       startWith({ stateChanges: { [stateKey]: this.getSpecificState<U>(stateKey) } }),
-      filter((stateChange) => !allowFilter || (allowFilter && !!stateChange.stateChanges[stateKey])),
-      map((stateChange) => stateChange.stateChanges[stateKey])
+      //@ts-ignore
+      filter((stateChange) => !allowFilter || (allowFilter && !!stateChange.stateChanges[stateKey])),map((stateChange) => stateChange.stateChanges[stateKey])
     );
   }
 
   specificGlobalStateChange<U>(stateKey: string): Observable<U> {
     return this.globalStateWithPropertyChanges.pipe(
-      filter((stateChange) => stateChange.stateChanges && !!stateChange.stateChanges[stateKey]),
-      map((stateChange) => stateChange.stateChanges[stateKey])
+      //@ts-ignore
+      filter((stateChange) => stateChange.stateChanges && !!stateChange.stateChanges[stateKey]),map((stateChange) => stateChange.stateChanges[stateKey])
     );
   }
 
@@ -45,6 +45,7 @@ export class BaseStateService<T> extends ObservableStore<T> {
     );
   }
 
+  //@ts-ignore
   getSpecificState = <U>(state?: string): U => (state ? this.getState()[state] : this.getState());
 
   getProperty<U>(property: string): U {

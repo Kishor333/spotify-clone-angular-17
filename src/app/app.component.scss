@@ -1,0 +1,15 @@
+.main-cont{
+    height: 100dvh;
+    background-color: yellow;
+    display: flex;
+    .cont-1 {
+        height: 100%;
+        width: 30%;
+        background-color: red;
+    }
+    .cont-2 {
+        height: 100%;
+        width: 70%;
+        background-color: white;
+    }
+}

@@ -30,7 +30,7 @@ export class authorizeGuardGuard {
     if (this.activate) {
       return true;
     } else {
-      this.router.navigate(['login']);
+      // this.router.navigate(['login']);
       return false;
     }
   } 

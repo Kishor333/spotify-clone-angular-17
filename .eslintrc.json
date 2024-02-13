@@ -20,7 +20,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "spotifyCloneAngular17",
+            "prefix": "vibee",
             "style": "camelCase"
           }
         ],
@@ -28,7 +28,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "spotify-clone-angular-17",
+            "prefix": "vibee",
             "style": "kebab-case"
           }
         ]

@@ -2,7 +2,7 @@
   "name": "spotify-clone-angular-17",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "spotify-clone-angular-17",
+  "prefix": "vibee",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser-esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/spotify-clone-angular-17/browser",
+        "outputPath": "dist/vibee/browser",
         "index": "./src/index.html",
         "main": "./src/main.ts",
         "polyfills": ["zone.js"],

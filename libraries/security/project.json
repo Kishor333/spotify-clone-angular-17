@@ -2,7 +2,7 @@
   "name": "security",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libraries/security/src",
-  "prefix": "spotify-clone-angular-17",
+  "prefix": "vibee",
   "tags": [],
   "projectType": "library",
   "targets": {}

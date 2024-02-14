@@ -4,10 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ENVIRONMENT } from '../../../../../env';
-// interface LoginForm {
-//   email: string;
-//   password: string;
-// }
 
 @Component({
   selector: 'vibee-login',
@@ -18,7 +14,6 @@ import { ENVIRONMENT } from '../../../../../env';
 })
 export class LoginComponent implements OnInit {
 
-  
   title = 'spotify-clone-angular-17';
   apiUrl = 'https://api.spotify.com/v1/albums';
   clientId = ENVIRONMENT.SPOTIFY_CLIENT_ID; // Replace with your client id
@@ -29,12 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    if (!this.code) {
-      this.redirectToAuthCodeFlow(this.clientId);
-    } else {
-      await this.getAccessToken(this.clientId, this.code);
-      // this.getAlbumById();
-    }
+    // if (!this.code) {
+    //   this.redirectToAuthCodeFlow(this.clientId);
+    // } else {
+    //   await this.getAccessToken(this.clientId, this.code);
+    //   // this.getAlbumById();
+    // }
+
   }
 
  

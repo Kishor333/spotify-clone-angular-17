@@ -1,15 +1,20 @@
-.main-cont{
+.vibee-layout{
     height: 100dvh;
-    background-color: yellow;
+    //background-color: theme('colors.black');
     display: flex;
-    .cont-1 {
+    &__side-nav {
         height: 100%;
         width: 30%;
-        background-color: red;
+        //background-color: theme('colors.primary');
+
+        .album-container {
+            //height: 500px;
+            overflow-y: scroll;
+        }
     }
-    .cont-2 {
+    &__content {
         height: 100%;
         width: 70%;
-        background-color: white;
+        //background-color: white;
     }
 }

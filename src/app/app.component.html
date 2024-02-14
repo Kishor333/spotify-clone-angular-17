@@ -1,11 +1,22 @@
 <vibee-login></vibee-login>
 
-<div class="main-cont">
-    <div class="cont-1">
-<!-- side nav   -->
+<div class="vibee-layout bg-black">
+  <div class="vibee-layout__side-nav bg-primary p-8">
+    <!-- side nav   -->
+    <div class="album-container cursor-pointer" *ngFor="let album of albums" (click)="onAlbumClick(album)">
+      <div class="flex gap-16 rounded-[4px] my-2 p-8 hover:bg-primary-highlight">
+        <figure class="flex items-center justify-center max-w-[50px] rounded-[8px]">
+          <img class="rounded-[8px]" src="{{album.images[0].url}}" alt="Album image">
+        </figure>
+        <div>
+          <p class=""> {{ album.name }} </p>
+          <p class="text-gray-400 text-sm" *ngFor="let artist of album.artists"> {{ artist.name }}</p>
+        </div>
+      </div>
     </div>
-    <div class="cont-2">
-        <router-outlet></router-outlet>
-    </div>
-
+  </div>
+  <div class="vibee-layout__content">
+    <router-outlet></router-outlet>
+    <spotify-clone-angular-17-album></spotify-clone-angular-17-album>
+  </div>
 </div>

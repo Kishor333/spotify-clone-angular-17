@@ -15,8 +15,10 @@ export const appRoutes: Route[] = [
     },
     { path:'album',
      loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
-     
     },
+  { path:'album/:id',
+    loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
+  },
     // {
     //     path: 'quotes',
     //     children: [{

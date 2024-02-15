@@ -9,10 +9,11 @@ import { SharedStoreEnum } from 'libraries/shared/src/lib/models/shared.store';
 import { tap } from 'rxjs';
 import { ENVIRONMENT } from '../../env';
 import { SharedFacadeService } from '../../libraries/shared/src/lib/services/shared-facade.service';
+import { AuthorizeGuardGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
 
 @Component({
   standalone: true,
-  imports: [ RouterModule, LoginComponent, AlbumComponent ],
+  imports: [RouterModule, LoginComponent, AlbumComponent, NgForOf],
   selector: 'spotify-clone-angular-17-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -23,22 +24,25 @@ export class AppComponent implements OnInit {
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
   
-  constructor(private sharedFacadeService: SharedFacadeService, private router: Router){
+  constructor(private sharedFacadeService: SharedFacadeService, private router: Router, private authorizeGuardGuard: AuthorizeGuardGuard){
 
   }
 
-  ngOnInit(): void {
-    this.checkIfAuthenticated();
+  async ngOnInit(): Promise<void> {
     if (this.code) {
-      this.getAccessToken(ENVIRONMENT.SPOTIFY_CLIENT_ID, this.code);
+      await this.getAccessToken(ENVIRONMENT.SPOTIFY_CLIENT_ID, this.code).then(() => {
+        this.getMultipleAlbums();
+        this.router.navigate(['album']);
+      });
     }
-    this.listenToStateAlums();
-    if (localStorage.getItem('spotify_access_token') && localStorage.getItem('spotify_access_token') !== 'undefined') {
+    else if (localStorage.getItem('spotify_access_token') && localStorage.getItem('spotify_access_token') !== 'undefined') {
       this.router.navigate(['album']);
+      this.getMultipleAlbums();
     }
     else {
       this.router.navigate(['login']);
     }
+    this.listenToStateAlums();
   }
 
   async getAccessToken(clientId: string, code: string): Promise<string> {
@@ -58,21 +62,11 @@ export class AppComponent implements OnInit {
     });
 
     const response = await result.json();
-    debugger
-    localStorage.setItem('spotify_access_token', response['access_token']);
-    localStorage.setItem('spotify_refresh_token', response['refresh_token']);
-    console.log(response);
-
+    if (response['access_token']) {
+      localStorage.setItem('spotify_access_token', response['access_token']);
+      localStorage.setItem('spotify_refresh_token', response['refresh_token']);
+    }
     return response['access_token'];
-  }
-
-  checkIfAuthenticated(): void {
-    if(!localStorage.getItem('spotify_access_token')){
-      this.router.navigate(['login']);
-    }
-    else {
-      this.getMultipleAlbums();
-    }
   }
 
   getMultipleAlbums(): void {
@@ -82,7 +76,6 @@ export class AppComponent implements OnInit {
   listenToStateAlums(): void {
     this.sharedFacadeService.specificStateChange<Album[]>('albums').pipe(tap((stateAlbums) => {
       this.albums = stateAlbums;
-        console.log('whole Album:',this.albums);
     })).subscribe();
 
   }

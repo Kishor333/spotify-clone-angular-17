@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ENVIRONMENT } from '../../../../../env';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,18 +22,18 @@ export class LoginComponent implements OnInit {
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    if (!this.code) {
-      this.redirectToAuthCodeFlow(this.clientId);
+    if (localStorage.getItem('spotify_access_token') && localStorage.getItem('spotify_access_token') !== 'undefined') {
+      this.router.navigate(['album']);
     }
+    else await this.redirectToAuthCodeFlow(this.clientId);
   }
 
  
 
-  async redirectToAuthCodeFlow(clientId: string) {
+  async redirectToAuthCodeFlow(clientId: string): Promise<void> {
     const verifier = this.generateCodeVerifier(128);
     const challenge = await this.generateCodeChallenge(verifier);
 
@@ -46,7 +47,6 @@ export class LoginComponent implements OnInit {
     params.append('code_challenge_method', 'S256');
     params.append('code_challenge', challenge);
     document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
-    console.log(this.code);
   }
 
   generateCodeVerifier(length: number) {

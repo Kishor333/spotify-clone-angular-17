@@ -4,13 +4,12 @@ import { ENVIRONMENT } from 'env';
 
 
 @Injectable({ providedIn: 'root' })
-export class authorizeGuardGuard {
+export class AuthorizeGuardGuard {
   constructor(
     public router: Router
   ) {}
   
   async canActivate(): Promise<boolean>{
-
      if(localStorage.getItem('spotify_refresh_token') && localStorage.getItem('spotify_refresh_token') !== 'undefined'){
       const [refreshToken, url] = [localStorage.getItem('spotify_refresh_token') || '', "https://accounts.spotify.com/api/token"];
        const payload = {
@@ -25,16 +24,15 @@ export class authorizeGuardGuard {
          }),
        }
        const body = await fetch(url, payload);
-       const response = await await body.json();
-       console.log('Inside guard',response);
+       const response = await body.json();
        debugger
-   
-       //@ts-ignore
-       localStorage.setItem('spotify_access_token', body['access_token']);
-       //@ts-ignore
-       localStorage.setItem('spotify_refresh_token', body.refreshToken);
+       if (response['access_token']) {
+         debugger
+         localStorage.setItem('spotify_access_token', response['access_token']);
+         //@ts-ignore
+         localStorage.setItem('spotify_refresh_token', response['refresh_token']);
+       }
      }
      return Promise.resolve(true);
   } 
 }
-  

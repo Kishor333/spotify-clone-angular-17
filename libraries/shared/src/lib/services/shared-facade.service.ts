@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, mapTo, tap } from 'rxjs';
 import { Album } from '../models/models';
 import { SharedStoreEnum } from '../models/shared.store';
 import { BaseFacadeService } from './base-facade.service';
@@ -17,7 +17,9 @@ export class SharedFacadeService extends BaseFacadeService<SharedStateService, S
     super(sharedStateService);
   }
 
-  getMultipleAlbums(ids: string): Observable<{albums: Album[]}> {
-    return this.sharedApiService.getMultipleAlbums(ids);
+  getMultipleAlbums(ids: string): Observable<boolean> {
+    return this.sharedApiService.getMultipleAlbums(ids).pipe(tap((albums) => {
+      this.updateSpecificState<Album[]>(albums.albums, SharedStoreEnum.ALBUMS);
+    }), mapTo(true));
   }
 }

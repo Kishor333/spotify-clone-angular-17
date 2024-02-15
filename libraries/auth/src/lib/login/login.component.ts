@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { InputTextModule } from 'primeng/inputtext';
 import { ENVIRONMENT } from '../../../../../env';
 
+
 @Component({
   selector: 'vibee-login',
   standalone: true,
@@ -24,13 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    // if (!this.code) {
-    //   this.redirectToAuthCodeFlow(this.clientId);
-    // } else {
-    //   await this.getAccessToken(this.clientId, this.code);
-    //   // this.getAlbumById();
-    // }
-
+    if (!this.code) {
+      this.redirectToAuthCodeFlow(this.clientId);
+    }
   }
 
  
@@ -49,6 +46,7 @@ export class LoginComponent implements OnInit {
     params.append('code_challenge_method', 'S256');
     params.append('code_challenge', challenge);
     document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
+    console.log(this.code);
   }
 
   generateCodeVerifier(length: number) {
@@ -69,28 +67,4 @@ export class LoginComponent implements OnInit {
       .replace(/\//g, '_')
       .replace(/=+$/, '');
   }
-
-  async getAccessToken(clientId: string, code: string): Promise<string> {
-    const verifier = localStorage.getItem('verifier') || '';
-
-    const params = new URLSearchParams();
-    params.append('client_id', clientId);
-    params.append('grant_type', 'authorization_code');
-    params.append('code', code);
-    params.append('redirect_uri', 'http://localhost:4200/');
-    params.append('code_verifier', verifier);
-
-    const result = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params
-    });
-
-    const response = await result.json();
-    localStorage.setItem('spotify_access_token', response['access_token']);
-    console.log(response);
-
-    return response['access_token'];
-  }
-
 }

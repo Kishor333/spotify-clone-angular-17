@@ -1,11 +1,15 @@
-export interface SharedStoreState {
-  dummy: undefined;
+import { Album } from './models';
+export enum SharedStoreEnum {
+  ALBUMS = 'albums',
+  ALBUM = 'album'
 }
 
-export enum SharedStoreEnum {
-  DUMMY = 'dummy'
+export interface SharedStoreState {
+  [SharedStoreEnum.ALBUMS]: [];
+  [SharedStoreEnum.ALBUM] : [],
 }
 
 export const INITIAL_SHARED_STORE_STATE: SharedStoreState = {
-  dummy : undefined,
+  [SharedStoreEnum.ALBUMS] : [],
+  [SharedStoreEnum.ALBUM] : [],
 };

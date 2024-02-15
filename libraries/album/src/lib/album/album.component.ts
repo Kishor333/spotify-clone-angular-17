@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Album } from 'libraries/shared/src/lib/models/models';
-import { AlbumFacadeService } from '../services/album-facade.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Album } from 'libraries/shared/src/lib/models/models';
+import { SharedStoreEnum } from 'libraries/shared/src/lib/models/shared.store';
 import { of, switchMap } from 'rxjs';
+import { SharedFacadeService } from '../../../../shared/src/lib/services/shared-facade.service';
+import { AlbumFacadeService } from '../services/album-facade.service';
 
 
 @Component({
@@ -13,28 +15,21 @@ import { of, switchMap } from 'rxjs';
   templateUrl: './album.component.html',
   styleUrl: './album.component.css'
 })
-export class AlbumComponent implements OnInit {
-  album!: Album;
+export class AlbumComponent implements OnInit{
+  stateAlbum: Album[] = [] as Album[];
 
-  constructor(private albumFacadeService: AlbumFacadeService, private activatedRoute: ActivatedRoute, private router: Router) {
-  }
-
+  constructor(private albumFacadeService: AlbumFacadeService, private sharedFacadeService: SharedFacadeService){}
   ngOnInit(): void {
-    this.listenToRoutes();
+    // this.getAlbumById();
+    this.stateAlbum = this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS);
+    console.log('Inside album component', this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS));
   }
 
-  listenToRoutes(): void {
-    this.activatedRoute.params.pipe(switchMap((params) => {
-      if (params['id']) {
-        this.getAlbumById(params['id']);
-      }
-      return of(null);
-    })).subscribe();
-  }
-
-  async getAlbumById(id: string): Promise<void> {
-    this.albumFacadeService.getAlbumById(id).subscribe((album) => {
-      this.album = album;
+  
+  async getAlbumById(): Promise<void> {
+    this.albumFacadeService.getAlbumById('4aawyAB9vmqN3uQ7FjRGTy').subscribe((album) => {
+      // this.album = album;
+      console.log(album);
     });
   }
 }

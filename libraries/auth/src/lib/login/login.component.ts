@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    const stringifiedAsccessToken = localStorage.getItem('spotify') || '';
+    const stringifiedAsccessToken = localStorage.getItem('spotify') || '{}';
     const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
 
     

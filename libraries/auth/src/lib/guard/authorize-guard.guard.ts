@@ -12,11 +12,11 @@ export class AuthorizeGuard {
   check = false;
   checkTokenExpiration(): boolean {
     const currentTime = Math.floor(Date.now() / 1000); // Get current timestamp in seconds
-    let expiresAt = JSON.parse(localStorage.getItem('spotify') || '');
+    let expiresAt = JSON.parse(localStorage.getItem('spotify') || '{}');
      // Calculate expiration time
     // console.log('current:',currentTime,'expires:' , expiresAt);
     // console.log('creating object', expiresAt?.expires_in);
-    // console.log('creating object', JSON.parse(localStorage.getItem('spotify') || '')?.expires_in); 
+    // console.log('creating object', JSON.parse(localStorage.getItem('spotify') || '{}')?.expires_in);
 
     //@ts-ignore
     console.log('leftover:',expiresAt?.expires_in - currentTime); 

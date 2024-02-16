@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const stringifiedAsccessToken = localStorage.getItem('spotify') || '';
+    const stringifiedAsccessToken = localStorage.getItem('spotify') || '{}';
     const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
     await this.refreshToken();
     

@@ -12,9 +12,12 @@ export class SharedApiService {
 
 
   getMultipleAlbums(ids: string): Observable<{albums: Album[]}> {
+    const stringifiedAsccessToken = localStorage.getItem('spotify') || '';
+    const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
+   
     return this.httpClient.get(`https://api.spotify.com/v1/albums?ids=${ids}`, {
       headers: {
-        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('spotify') || '')?.expires_in}`
+        'Authorization': `Bearer ${accessToken}`
       }
     }) as Observable<{albums: Album[]}>;
   } 

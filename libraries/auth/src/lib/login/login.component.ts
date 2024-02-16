@@ -25,8 +25,11 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    let sccessToken = JSON.parse(localStorage.getItem('spotify') || '')?.expires_in;
-    if (sccessToken && sccessToken !== 'undefined') {
+    const stringifiedAsccessToken = localStorage.getItem('spotify') || '';
+    const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
+
+    
+    if (accessToken && accessToken !== 'undefined') {
       this.router.navigate(['album']);
     }
     else await this.redirectToAuthCodeFlow(this.clientId);

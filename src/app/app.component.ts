@@ -33,6 +33,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    const stringifiedAsccessToken = localStorage.getItem('spotify') || '';
+    const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
     await this.refreshToken();
     
     if (this.code) {
@@ -41,7 +43,7 @@ export class AppComponent implements OnInit {
         this.router.navigate(['album']);
       });
     }
-    else if (JSON.parse(localStorage.getItem('spotify') || '')?.expires_in && JSON.parse(localStorage.getItem('spotify') || '')?.expires_in !== 'undefined') {
+    else if (accessToken && accessToken !== 'undefined') {
       this.router.navigate(['album']);
       this.getMultipleAlbums();
     }
@@ -80,6 +82,7 @@ export class AppComponent implements OnInit {
   }
 
   async refreshToken(): Promise<void> {
+    
     if(localStorage.getItem('spotify_refresh_token') && localStorage.getItem('spotify_refresh_token') !== 'undefined'){
       await this.authorizeGuardGuard.canActivate();
     }

@@ -1,15 +1,15 @@
 import { NgForOf } from '@angular/common';
 import { error } from '@angular/compiler-cli/src/transformers/util';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { LoginComponent } from '@spotify-clone-angular-17/auth';
 import { Album } from '@spotify-clone-angular-17/shared';
 import { AlbumComponent } from 'libraries/album/src/lib/album/album.component';
 import { SharedStoreEnum } from 'libraries/shared/src/lib/models/shared.store';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { ENVIRONMENT } from '../../env';
+import { AuthorizeGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
 import { SharedFacadeService } from '../../libraries/shared/src/lib/services/shared-facade.service';
-import { AuthorizeGuardGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
 
 @Component({
   standalone: true,
@@ -24,18 +24,24 @@ export class AppComponent implements OnInit {
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
   
-  constructor(private sharedFacadeService: SharedFacadeService, private router: Router, private authorizeGuardGuard: AuthorizeGuardGuard){
+  constructor(
+    private sharedFacadeService: SharedFacadeService,
+    private router: Router,
+    private authorizeGuardGuard: AuthorizeGuard,
+    private activatedRoute: ActivatedRoute){
 
   }
 
   async ngOnInit(): Promise<void> {
+    await this.refreshToken();
+    
     if (this.code) {
       await this.getAccessToken(ENVIRONMENT.SPOTIFY_CLIENT_ID, this.code).then(() => {
         this.getMultipleAlbums();
         this.router.navigate(['album']);
       });
     }
-    else if (localStorage.getItem('spotify_access_token') && localStorage.getItem('spotify_access_token') !== 'undefined') {
+    else if (JSON.parse(localStorage.getItem('spotify') || '')?.expires_in && JSON.parse(localStorage.getItem('spotify') || '')?.expires_in !== 'undefined') {
       this.router.navigate(['album']);
       this.getMultipleAlbums();
     }
@@ -63,14 +69,44 @@ export class AppComponent implements OnInit {
 
     const response = await result.json();
     if (response['access_token']) {
-      localStorage.setItem('spotify_access_token', response['access_token']);
+      // localStorage.setItem('spotify_access_token', response['access_token']);
+      localStorage.setItem('spotify', JSON.stringify({
+        access_token: response['access_token'],
+        expires_in: Math.floor(Date.now() / 1000) + 3600
+      }));
       localStorage.setItem('spotify_refresh_token', response['refresh_token']);
     }
     return response['access_token'];
   }
 
+  async refreshToken(): Promise<void> {
+    if(localStorage.getItem('spotify_refresh_token') && localStorage.getItem('spotify_refresh_token') !== 'undefined'){
+      await this.authorizeGuardGuard.canActivate();
+    }
+  }
+
   getMultipleAlbums(): void {
-    this.sharedFacadeService.getMultipleAlbums('382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc,6Z1zv6Hw9bdvSoxI5uYk2h').subscribe();
+    this.sharedFacadeService.getMultipleAlbums('382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc,6Z1zv6Hw9bdvSoxI5uYk2h')
+    .pipe(
+     
+      catchError( async (error) => {
+        
+        // if (error.status === 401) {
+        //    console.error('Spotify API error (401):', error.error);
+        //   //  this.router.navigate(['/login']);
+        //   // await this.authorizeGuardGuard.canActivate();
+        //    return throwError(new Error('Spotify access token expired or invalid'));
+           
+        // }
+         if (error.status >= 400) {
+          console.error('Spotify API error kishor:', error.error);
+          return throwError(error);
+        } 
+        else {
+          return throwError(error);
+        }
+      })
+    ).subscribe();
   }
 
   listenToStateAlums(): void {
@@ -81,6 +117,8 @@ export class AppComponent implements OnInit {
   }
 
   onAlbumClick(album: Album): void {
-    // this.router.navigate([`album/${album.id}`], {relativeTo: this.activatedRoute});
+    // this.sharedFacadeService.s
+    this.router.navigate([`album/${album.id}`], {relativeTo: this.activatedRoute});
+    // console.log(album);
   }
 }

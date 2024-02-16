@@ -7,7 +7,8 @@ export class BaseFacadeService<T, V> {
     this.currentStateService = state;
   }
 
-  //@ts-ignore
+  //@ts-ignore 
+  //initalize/reset
   initialize = (): void => this.currentStateService['initialState']();
 
   //@ts-ignore

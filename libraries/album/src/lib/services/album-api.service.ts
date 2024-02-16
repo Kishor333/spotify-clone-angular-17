@@ -14,8 +14,8 @@ export class AlbumApiService {
 getAlbumById(id: string): Observable<Album> {
   return this.httpClient.get(`https://api.spotify.com/v1/albums/${id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('spotify_access_token')}`
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('spotify') || '')?.expires_in}`
       }
-    }) as unknown as Observable<Album>;    
+    }) as unknown as Observable<Album>;  
 }
 }

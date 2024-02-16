@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { Route } from '@angular/router';
-import { AuthorizeGuardGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
+import { AuthorizeGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
 
 export const appRoutes: Route[] = [
     {path:'',
      loadComponent: () => import('../../libraries/auth/src/lib/auth/auth.component').then(component => component.AuthComponent),
-     // canActivate: [() => inject(AuthorizeGuardGuard).canActivate()]
+     canActivate: [() => inject(AuthorizeGuard).canActivate()]
     },
     { path:'login',
      loadComponent: () => import('../../libraries/auth/src/lib/login/login.component').then(component => component.LoginComponent)
@@ -14,9 +14,9 @@ export const appRoutes: Route[] = [
     { path:'album',
      loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
     },
-  { path:'album/:id',
-    loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
-  },
+    { path:'album/:id',
+        loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
+    },
     // {
     //     path: 'quotes',
     //     children: [{

@@ -18,9 +18,17 @@ import { AlbumFacadeService } from '../services/album-facade.service';
 export class AlbumComponent implements OnInit{
   stateAlbum: Album[] = [] as Album[];
 
-  constructor(private albumFacadeService: AlbumFacadeService, private sharedFacadeService: SharedFacadeService){}
+  constructor(
+    private albumFacadeService: AlbumFacadeService,
+    private sharedFacadeService: SharedFacadeService,
+    private activateRoute: ActivatedRoute){}
   ngOnInit(): void {
     // this.getAlbumById();
+    this.activateRoute.paramMap.subscribe((params) => {
+      console.log(params.get('id'));
+      // get
+    })
+    console.log(this.activateRoute.snapshot.paramMap.get('id'));
     this.stateAlbum = this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS);
     console.log('Inside album component', this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS));
   }

@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { ENVIRONMENT } from '../../../../../env';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    if (localStorage.getItem('spotify_access_token') && localStorage.getItem('spotify_access_token') !== 'undefined') {
+    let sccessToken = JSON.parse(localStorage.getItem('spotify') || '')?.expires_in;
+    if (sccessToken && sccessToken !== 'undefined') {
       this.router.navigate(['album']);
     }
     else await this.redirectToAuthCodeFlow(this.clientId);

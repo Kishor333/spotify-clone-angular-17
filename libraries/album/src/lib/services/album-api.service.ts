@@ -11,13 +11,15 @@ export class AlbumApiService {
   constructor(private httpClient: HttpClient) {
 }
 
-getAlbumById(id: string): Observable<Album> {
+
+getAlbumById(id: string): Observable<Album> { 
   const stringifiedAsccessToken = localStorage.getItem('spotify') || '{}';
   const accessToken = JSON.parse(stringifiedAsccessToken)?.access_token;
+
   return this.httpClient.get(`https://api.spotify.com/v1/albums/${id}`, {
       headers: {
         'Authorization': `Bearer ${accessToken}`
       }
-    }) as unknown as Observable<Album>;  
+    }) as Observable<Album>;  
 }
 }

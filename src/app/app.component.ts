@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  getMultipleAlbums(): void {
+  getMultipleAlbums(): void { 
     this.sharedFacadeService.getMultipleAlbums('382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc,6Z1zv6Hw9bdvSoxI5uYk2h')
     .pipe(
      
@@ -120,6 +120,7 @@ export class AppComponent implements OnInit {
   }
 
   onAlbumClick(album: Album): void {
+    
     // this.sharedFacadeService.s
     this.router.navigate([`album/${album.id}`], {relativeTo: this.activatedRoute});
     // console.log(album);

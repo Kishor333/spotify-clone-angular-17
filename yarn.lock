@@ -2212,6 +2212,13 @@
   dependencies:
     call-bind "^1.0.5"
 
+"@ngneat/until-destroy@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/@ngneat/until-destroy/-/until-destroy-10.0.0.tgz#105db43d858bc1cec2f36272a296af68bed7bf43"
+  integrity sha512-xXFAabQ4YVJ82LYxdgUlaKZyR3dSbxqG3woSyaclzxfCgWMEDweCcM/GGYbNiHJa0WwklI98RXHvca+UyCxpeg==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngtools/webpack@17.1.3":
   version "17.1.3"
   resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-17.1.3.tgz#510c5f6f6bf9ae470b0e43d4560cfc4ffc3a5ed5"

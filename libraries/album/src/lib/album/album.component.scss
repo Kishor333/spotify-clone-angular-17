@@ -1,0 +1,39 @@
+.profile-container {
+  &__install-app,&__bell, &__profile {
+    transition: transform 300ms;
+    &:hover {
+      transform: scale(1.05);
+    }
+
+  }
+//  &__install-app:hover {
+//    transform: scale(1.05);
+//}
+}
+
+.profile-container {
+  &__bell:hover{
+    //transform: scale(1.05);
+   i {
+     opacity: 1 !important;
+   }
+  }
+}
+
+.album-cover:hover {
+  transition: transform 300ms;
+  transform: scale(1.05);
+}
+
+//.profile-container {
+//  &__profile:hover {
+//    transform: scale(1.05);
+//  }
+//}
+.title-font {
+  font-size: clamp(57px,4vw,90px);
+}
+
+.title-container--width {
+  width: calc(100% - 240px);
+}

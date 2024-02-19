@@ -1,11 +1,9 @@
 import { NgForOf } from '@angular/common';
-import { error } from '@angular/compiler-cli/src/transformers/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
 import { LoginComponent } from '@spotify-clone-angular-17/auth';
 import { Album } from '@spotify-clone-angular-17/shared';
 import { AlbumComponent } from 'libraries/album/src/lib/album/album.component';
-import { SharedStoreEnum } from 'libraries/shared/src/lib/models/shared.store';
 import { catchError, tap, throwError } from 'rxjs';
 import { ENVIRONMENT } from '../../env';
 import { AuthorizeGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
@@ -20,7 +18,6 @@ import { SharedFacadeService } from '../../libraries/shared/src/lib/services/sha
 })
 export class AppComponent implements OnInit {
   albums:Album[] = [];
-  clientId = ENVIRONMENT.SPOTIFY_CLIENT_ID; // Replace with your client id
   params = new URLSearchParams(window.location.search);
   code = this.params.get('code');
   

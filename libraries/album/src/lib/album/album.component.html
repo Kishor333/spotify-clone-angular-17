@@ -1,7 +1,5 @@
-<p>album works!</p>
+<p>{{(selectedStateAlbum?.length === 0 ? 'selectedStateAlbum ': 'stateAlbum')| json}}</p>
 <section >
-{{(stateAlbum )| json}}
-<!-- {{(selectedAlbum.name ?? stateAlbum[3].name )| json}} -->
-   
+<pre>{{(selectedStateAlbum?.length === 0 ? stateAlbum : selectedAlbum.name)| json}}</pre>
+  
 </section>
-<!-- {{album?.name}} -->

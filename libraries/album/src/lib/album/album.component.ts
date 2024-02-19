@@ -4,11 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Album } from 'libraries/shared/src/lib/models/models';
 import { SharedStoreEnum } from 'libraries/shared/src/lib/models/shared.store';
-import { catchError, last, of, switchMap, take, tap, throwError } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { SharedFacadeService } from '../../../../shared/src/lib/services/shared-facade.service';
 import { AlbumFacadeService } from '../services/album-facade.service';
-import { AlbumStoreEnum } from '../services/album.store';
 
 @UntilDestroy()
 @Component({
@@ -20,6 +17,7 @@ import { AlbumStoreEnum } from '../services/album.store';
 })
 export class AlbumComponent implements OnInit {
   stateAlbum: Album[] = [] as Album[];
+  selectedStateAlbum: Album[] = [] as Album[];
   selectedAlbum: Album = {} as Album;
 
   constructor(
@@ -27,17 +25,16 @@ export class AlbumComponent implements OnInit {
     private sharedFacadeService: SharedFacadeService,
     private activateRoute: ActivatedRoute){}
   ngOnInit(): void {
+    console.log(this.selectedStateAlbum.length, ':type1')
     // this.getAlbumById();
     this.activateRoute.paramMap.subscribe((params) => {
       if(params.get('id')){
         console.log('calleds with id',params.get('id'));
-        this.getAlbumById(params.get('id'));
-        // this.singleAlbumListner();
-        // console.log('click listner form album:',this.albumFacadeService.getSpecificState(AlbumStoreEnum.ALBUM));
+        this.getSingleAlbum(params.get('id'));
       }
     });
 
-    this.singleAlbumListner();
+    // this.singleAlbumListner();
 
     this.stateAlbum = this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS);
     
@@ -45,19 +42,35 @@ export class AlbumComponent implements OnInit {
    
   }
 
-  getAlbumById(albumId:any): void{
-    this.albumFacadeService.getAlbumById(albumId).pipe(
-      catchError( (error) => {
-        return throwError('error form single', error)
-      })
-    ).subscribe();
-  };
+  getSingleAlbum(id:any):void {
+    console.log('pressed', id);
+    // this.selectedAlbum = this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS).find((album) => album.id === id);
+    //@ts-ignore
+    this.selectedStateAlbum = this.sharedFacadeService.getSpecificState(SharedStoreEnum.ALBUMS).find((album) => album.id === id);
+    // this.selectedAlbum = this.selectedStateAlbum.find(album => album.id === id);
+    this.selectedAlbum = Object(this.selectedStateAlbum);
+    
+    console.log('selected:',Object(this.selectedStateAlbum) )
+    console.log(this.selectedStateAlbum.length, ':type2')
+    // this.getAlbumById(id);
+        
 
-  singleAlbumListner():void {
-    this.albumFacadeService.specificStateChange<Album>(AlbumStoreEnum.ALBUM).pipe(untilDestroyed(this), filter((album) => !!album),tap((stateAlbum) => {
-      this.selectedAlbum = stateAlbum;
-      // this.selectedAlbum = stateAlbum;
-      console.log('single album',this.selectedAlbum.name);
-    })).subscribe();
-  };
+  }
+
+ //fetch Api and save in store
+  // getAlbumById(albumId:any): void{
+  //   this.albumFacadeService.getAlbumById(albumId).pipe(
+  //     catchError( (error) => {
+  //       return throwError('error form single', error)
+  //     })
+  //   ).subscribe();
+  // };
+
+  // singleAlbumListner():void {
+  //   this.albumFacadeService.specificStateChange<Album>(AlbumStoreEnum.ALBUM).pipe(untilDestroyed(this), filter((album) => !!album),tap((stateAlbum) => {
+  //     this.selectedAlbum = stateAlbum;
+  //     // this.selectedAlbum = stateAlbum;
+  //     console.log('single album',this.selectedAlbum.name);
+  //   })).subscribe();
+  // };
 }

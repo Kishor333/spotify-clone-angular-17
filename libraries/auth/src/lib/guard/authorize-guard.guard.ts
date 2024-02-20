@@ -52,6 +52,7 @@ export class AuthorizeGuard {
            }));
            //@ts-ignore
            localStorage.setItem('spotify_refresh_token', response['refresh_token']);
+           debugger
           this.router.navigate(['album']);
          }
        }

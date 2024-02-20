@@ -1,3 +1,10 @@
+<ng-container *ngIf="stateAlbum?.length && !selectedAlbum">
+  <p>many</p>
+  <div #container class="w-full">
+    <p #titleText [ngClass]="isOverflowing ? '!text-[60px]': '!text-[90px]'" class="inline-block"></p>
+  </div>
+</ng-container>
+<ng-container *ngIf="selectedAlbum">
 <section class="bg-primary-highlight rounded-t-lg ">
   <div class="flex justify-between px-24 py-16">
     <div class="flex">
@@ -26,7 +33,7 @@
   <div class="album-container h-72 bg-primary-highlight px-24 pt-20 pb-24 rounded-[8px]">
     <div class="w-full flex gap-20 items-end">
       <figure class="h-full w-[230px] album-cover cursor-pointer">
-        <img class="w-full h-full object-cover rounded-[6px]" src="{{stateAlbum?.[3]?.images?.[0]?.url}}" alt="">
+        <img class="w-full h-full object-cover rounded-[6px]" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
       </figure>
       <div class="title-container--width">
         <p>
@@ -35,19 +42,19 @@
 
         <div #container class="w-full">
           <p #titleText [ngClass]="{'!text-[60px]': isOverflowing}"
-             class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{ stateAlbum?.[3]?.name }}</p>
+             class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{ selectedAlbum?.name }}</p>
         </div>
         <div class="flex items-center">
           <figure class="bg-primary rounded-full h-24 w-24 cursor-pointer m-6">
-            <img class="rounded-full object-cover h-full w-full" src="{{stateAlbum?.[3]?.images?.[0]?.url}}" alt="">
+            <img class="rounded-full object-cover h-full w-full" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
           </figure>
-          <span *ngIf="stateAlbum?.[3]?.name">{{ stateAlbum?.[3]?.name }}</span>
+          <span *ngIf="selectedAlbum?.name">{{ selectedAlbum?.name }}</span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ stateAlbum?.[3]?.release_date }} </span>
+          <span> {{ selectedAlbum?.release_date }} </span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ stateAlbum?.[3]?.total_tracks || 0 }} songs </span>
+          <span> {{ selectedAlbum?.total_tracks || 0 }} songs </span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ stateAlbum?.[3]?.tracks?.limit }} min</span>
+          <span> {{ selectedAlbum?.tracks?.limit }} min</span>
         </div>
       </div>
     </div>
@@ -71,3 +78,4 @@
     </div>
   </div>
 </section>
+</ng-container>

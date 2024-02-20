@@ -11,12 +11,13 @@ export const appRoutes: Route[] = [
      loadComponent: () => import('../../libraries/auth/src/lib/login/login.component').then(component => component.LoginComponent)
      
     },
-    { path:'album',
-     loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
-    },
     { path:'album/:id',
         loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
     },
+    { path:'album',
+     loadComponent: () => import('../../libraries/album/src/lib/album/album.component').then(component => component.AlbumComponent)
+    },
+    
     // {
     //     path: 'quotes',
     //     children: [{

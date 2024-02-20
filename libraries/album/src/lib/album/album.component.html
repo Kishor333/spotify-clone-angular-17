@@ -59,8 +59,9 @@
       </div>
     </div>
   </div>
+
   <div class="track-list-header bg-primary">
-    <div class="p-24 flex items-center justify-between">
+    <div class="px-24 pt-24 flex items-center justify-between">
       <div class="flex items-center justify-center gap-32">
         <div class="bg-light-green flex items-center justify-center rounded-full w-[54px] h-[54px] cursor-pointer">
           <span class="w-[24px] h-[24px]">
@@ -79,6 +80,28 @@
       <div class="flex items-center text-sm">
         <span class="mr-6">List</span>
         <i class="pi pi-list cursor-pointer"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="track-list p-20 bg-primary">
+    <div class="flex justify-between items-center border-b-[0.1px] opacity-30 px-16">
+      <div class="flex justify-center items-center gap-16">
+        <span>#</span>
+        <span>Title</span>
+      </div>
+      <i class="pi pi-clock opacity-90 mr-32"></i>
+    </div>
+    <div *ngFor="let track of selectedAlbum.tracks.items; let i=index">
+      <div class="flex justify-between items-center px-16">
+        <div class="flex items-center justify-center gap-16">
+          <p>{{i+1}}</p>
+          <div class="flex flex-col p-8">
+            <span>{{track.name}}</span>
+            <span class="text-sm opacity-50">{{track.artists[0]?.name}}</span>
+          </div>
+        </div>
+        <p> {{track.duration_ms}}</p>
       </div>
     </div>
   </div>

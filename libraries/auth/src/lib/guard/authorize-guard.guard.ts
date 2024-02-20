@@ -42,9 +42,7 @@ export class AuthorizeGuard {
          }
          const body = await fetch(url, payload);
          const response = await body.json();
-        //  debugger
          if (response['access_token']) {
-          //  debugger
           //  localStorage.setItem('spotify_access_token', response['access_token']);
            localStorage.setItem('spotify', JSON.stringify({
              access_token: response['access_token'],
@@ -52,7 +50,6 @@ export class AuthorizeGuard {
            }));
            //@ts-ignore
            localStorage.setItem('spotify_refresh_token', response['refresh_token']);
-           debugger
           this.router.navigate(['album']);
          }
        }

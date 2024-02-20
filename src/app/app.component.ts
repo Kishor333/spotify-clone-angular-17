@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       });
     }
     else if (accessToken && accessToken !== 'undefined') {
-      this.router.navigate(['album']);
+      // this.router.navigate(['album']);
       this.getMultipleAlbums();
     }
     else {

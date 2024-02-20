@@ -85,7 +85,7 @@
   </div>
 
   <div class="track-list p-20 bg-primary">
-    <div class="flex justify-between items-center border-b-[0.1px] opacity-30 px-16">
+    <div class="flex justify-between items-center border-b-[0.1px] opacity-30 px-16 mb-12">
       <div class="flex justify-center items-center gap-16">
         <span>#</span>
         <span>Title</span>
@@ -93,7 +93,7 @@
       <i class="pi pi-clock opacity-90 mr-32"></i>
     </div>
     <div *ngFor="let track of selectedAlbum.tracks.items; let i=index">
-      <div class="flex justify-between items-center px-16">
+      <div class="flex justify-between items-center px-16 cursor-pointer hover:bg-primary-highlight rounded-[8px]">
         <div class="flex items-center justify-center gap-16">
           <p>{{i+1}}</p>
           <div class="flex flex-col p-8">

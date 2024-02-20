@@ -1,53 +1,72 @@
-<section class="bg-primary-highlight rounded-[8px]">
-  <div class="album-container h-72 bg-primary-highlight p-20 rounded-[8px]">
-    <div class="flex justify-between pb-[49px]">
-      <div class="flex">
+<section class="bg-primary-highlight rounded-t-lg ">
+  <div class="flex justify-between px-24 py-16">
+    <div class="flex">
         <span class="flex items-center justify-center w-32 h-32 bg-primary rounded-full mr-8 cursor-pointer">
           <i class="pi pi-angle-left text-[22px]"></i>
         </span>
-        <span class="flex items-center justify-center w-32 h-32  bg-primary rounded-full mr-8 cursor-pointer">
+      <span class="flex items-center justify-center w-32 h-32  bg-primary rounded-full mr-8 cursor-pointer">
           <i class="pi pi-angle-right text-[22px]"></i>
         </span>
-      </div>
-      <div class="flex justify-between items-start gap-8 profile-container">
-        <div class="bg-primary py-6 px-16 rounded-full title--small cursor-pointer profile-container__install-app">
-          <i class="pi pi-download mr-4"></i>
-          <span>Install App</span>
-        </div>
-        <div class="flex items-center justify-center rounded-full bg-primary h-32 w-32 cursor-pointer profile-container__bell">
-          <i class="pi pi-bell opacity-60"></i>
-        </div>
-        <figure class="bg-primary p-4 rounded-full h-32 w-32 cursor-pointer profile-container__profile">
-          <img class="rounded-full object-cover h-full w-full"
-               src="https://i.scdn.co/image/ab67757000003b82d44354387c953111f318e572" alt="">
-        </figure>
-      </div>
     </div>
+    <div class="flex justify-between items-start gap-8 profile-container">
+      <div class="bg-primary py-6 px-16 rounded-full title--small cursor-pointer profile-container__install-app">
+        <i class="pi pi-download mr-4"></i>
+        <span>Install App</span>
+      </div>
+      <div
+        class="flex items-center justify-center rounded-full bg-primary h-32 w-32 cursor-pointer profile-container__bell">
+        <i class="pi pi-bell opacity-60"></i>
+      </div>
+      <figure class="bg-primary p-4 rounded-full h-32 w-32 cursor-pointer profile-container__profile">
+        <img class="rounded-full object-cover h-full w-full"
+             src="https://i.scdn.co/image/ab67757000003b82d44354387c953111f318e572" alt="">
+      </figure>
+    </div>
+  </div>
+  <div class="album-container h-72 bg-primary-highlight px-24 pt-20 pb-24 rounded-[8px]">
     <div class="w-full flex gap-20 items-end">
       <figure class="h-full w-[230px] album-cover cursor-pointer">
-        <img class="w-full h-full object-cover rounded-[6px]" src="{{stateAlbum?.[0]?.images?.[0]?.url}}" alt="">
+        <img class="w-full h-full object-cover rounded-[6px]" src="{{stateAlbum?.[3]?.images?.[0]?.url}}" alt="">
       </figure>
       <div class="title-container--width">
         <p>
-          {{stateAlbum?.[0]?.type | titlecase}}
+          {{ stateAlbum?.[0]?.type | titlecase }}
         </p>
 
-        {{isOverflowing}}
         <div #container class="w-full">
-          <p #titleText [ngClass]="{'!text-[60px]': isOverflowing}" class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{stateAlbum?.[3]?.name}}</p>
+          <p #titleText [ngClass]="{'!text-[60px]': isOverflowing}"
+             class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{ stateAlbum?.[3]?.name }}</p>
         </div>
         <div class="flex items-center">
           <figure class="bg-primary rounded-full h-24 w-24 cursor-pointer m-6">
-            <img class="rounded-full object-cover h-full w-full" src="{{stateAlbum?.[0]?.images?.[0]?.url}}" alt="">
+            <img class="rounded-full object-cover h-full w-full" src="{{stateAlbum?.[3]?.images?.[0]?.url}}" alt="">
           </figure>
-          <span *ngIf="stateAlbum?.[3]?.name">{{stateAlbum?.[3]?.name}}</span>
+          <span *ngIf="stateAlbum?.[3]?.name">{{ stateAlbum?.[3]?.name }}</span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{stateAlbum?.[3]?.release_date}} </span>
+          <span> {{ stateAlbum?.[3]?.release_date }} </span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{stateAlbum?.[3]?.total_tracks || 0}} songs </span>
+          <span> {{ stateAlbum?.[3]?.total_tracks || 0 }} songs </span>
           <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{stateAlbum?.[3]?.tracks?.limit}} min</span>
+          <span> {{ stateAlbum?.[3]?.tracks?.limit }} min</span>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="track-list-header bg-primary">
+    <div class="p-24 flex items-center justify-between">
+      <div class="flex items-center justify-center gap-32">
+        <div class="bg-light-green flex items-center justify-center rounded-full w-[54px] h-[54px] cursor-pointer">
+          <i class="pi pi-play text-black"></i>
+        </div>
+        <span class="cursor-pointer">
+          <i class="pi pi-heart-fill text-light-green text-[30px]"></i>
+        </span>
+        <span class="cursor-pointer">
+          <i class="pi pi-ellipsis-h text-[20px]"></i>
+        </span>
+      </div>
+      <div>
+        <i class="pi pi-list text-[20px] cursor-pointer"></i>
       </div>
     </div>
   </div>

@@ -1,8 +1,7 @@
-import { highlight } from '@nx/js/src/utils/code-frames/highlight';
-
 module.exports = {
   'primary': '#121212',
   'primary-highlight': '#1A1A1A',
+  'light-green': '#1ed760',
 
   'white': '#FFFFFF',
   'black': '#000000',

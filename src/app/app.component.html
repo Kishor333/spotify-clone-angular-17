@@ -1,5 +1,5 @@
 <div class="vibee-layout bg-black p-8 gap-8">
-  <div class="vibee-layout__side-nav bg-primary p-8 rounded-[8px]">
+  <div class="vibee-layout__side-nav bg-primary p-8 rounded-[8px] overflow-y-auto min-w-[280px]">
     <!-- side nav   -->
     <div class="album-container cursor-pointer" *ngFor="let album of albums" (click)="onAlbumClick(album)">
       <div class="flex gap-16 rounded-[4px] my-2 p-8 hover:bg-primary-highlight">
@@ -13,8 +13,74 @@
       </div>
     </div>
   </div>
-  <div class="vibee-layout__content">
+  <div class="vibee-layout__content overflow-y-auto rounded-[8px]">
     <router-outlet></router-outlet>
     <!-- <spotify-clone-angular-17-album></spotify-clone-angular-17-album> -->
+  </div>
+</div>
+<div class="bg-black h-[88px] p-16 fixed bottom-0 w-full">
+  <!--  Move these logic inside a player component-->
+  <div class="flex">
+    <div class="flex items-center gap-20 w-[30%]">
+      <figure class="w-[56px] h-[56px]">
+        <img class="rounded-[6px]" src="{{albums?.[0]?.images?.[0]?.url}}" alt="">
+      </figure>
+      <div>
+        <p>Sarangi</p>
+        <p class="text-sm opacity-50">Sushant KC</p>
+      </div>
+      <span>
+        <i class="pi pi-heart-fill text-light-green"></i>
+      </span>
+    </div>
+    <div class="flex flex-col w-[40%]">
+      <div class="flex items-center justify-center gap-16">
+        <div class="flex items-center justify-center h-26 w-26 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M13.151.922a.75.75 0 1 0-1.06 1.06L13.109 3H11.16a3.75 3.75 0 0 0-2.873 1.34l-6.173 7.356A2.25 2.25 0 0 1 .39 12.5H0V14h.391a3.75 3.75 0 0 0 2.873-1.34l6.173-7.356a2.25 2.25 0 0 1 1.724-.804h1.947l-1.017 1.018a.75.75 0 0 0 1.06 1.06L15.98 3.75 13.15.922zM.391 3.5H0V2h.391c1.109 0 2.16.49 2.873 1.34L4.89 5.277l-.979 1.167-1.796-2.14A2.25 2.25 0 0 0 .39 3.5z"
+              fill="white"></path>
+            <path
+              d="m7.5 10.723.98-1.167.957 1.14a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.829 2.828-2.829 2.828a.75.75 0 1 1-1.06-1.06L13.109 13H11.16a3.75 3.75 0 0 1-2.873-1.34l-.787-.938z"
+              fill="white"></path>
+          </svg>
+        </div>
+        <div class="flex items-center justify-center h-26 w-26 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"
+              fill="white"></path>
+          </svg>
+        </div>
+        <div class="flex items-center justify-center h-32 w-32 rounded-full bg-white cursor-pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path
+              d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+          </svg>
+        </div>
+        <div class="flex items-center justify-center h-26 w-26 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"
+              fill="white"></path>
+          </svg>
+        </div>
+        <div class="flex items-center justify-center h-26 w-26 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 1 1 1.06 1.06L9.811 12h2.439a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"
+              fill="white"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <span class="text-sm opacity-35">2:28</span>
+        <div class="bg-neutral-500 h-[4px]  w-full mx-10 rounded-full">
+          <div class="bg-white w-1/2 h-[4px] opacity-100 rounded-full"></div>
+        </div>
+        <span class="text-sm opacity-35">4:48</span>
+      </div>
+    </div>
+    <div class="w-[30%]"></div>
   </div>
 </div>

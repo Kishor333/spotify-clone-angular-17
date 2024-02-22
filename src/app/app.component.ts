@@ -8,10 +8,12 @@ import { catchError, tap, throwError } from 'rxjs';
 import { ENVIRONMENT } from '../../env';
 import { AuthorizeGuard } from '../../libraries/auth/src/lib/guard/authorize-guard.guard';
 import { SharedFacadeService } from '../../libraries/shared/src/lib/services/shared-facade.service';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { PrimeTemplate } from 'primeng/api';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LoginComponent, AlbumComponent, NgForOf],
+  imports: [RouterModule, LoginComponent, AlbumComponent, NgForOf, ProgressBarModule],
   selector: 'spotify-clone-angular-17-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -86,7 +88,7 @@ export class AppComponent implements OnInit {
   }
 
   getMultipleAlbums(): void {
-    this.sharedFacadeService.getMultipleAlbums('382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc,6Z1zv6Hw9bdvSoxI5uYk2h')
+    this.sharedFacadeService.getMultipleAlbums('53GL8FLJc2aubIc98hVAYq,46ksJlfXcOQTlSUo7EWIYE,6mf8OEVjN1rdUky9od49Fm,2fenSS68JI1h4Fo296JfGr,7MD7nrObKhCuIx39qmRqq8,7Hj790INqI9oXSuP0P4Y2o,4htLxSjMjbAyF43G7M5nqN,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h,6Z1zv6Hw9bdvSoxI5uYk2h')
     .pipe(
      
       catchError( async (error) => {

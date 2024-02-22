@@ -5,105 +5,123 @@
   </div>
 </ng-container>
 <ng-container *ngIf="selectedAlbum">
-<section class="bg-primary-highlight rounded-t-lg ">
-  <div class="flex justify-between px-24 py-16">
-    <div class="flex">
+  <section class="bg-primary-highlight">
+    <div class="flex justify-between px-24 py-16">
+      <div class="flex">
         <span class="flex items-center justify-center w-32 h-32 bg-primary rounded-full mr-8 cursor-pointer">
           <i class="pi pi-angle-left text-[22px]"></i>
         </span>
-      <span class="flex items-center justify-center w-32 h-32  bg-primary rounded-full mr-8 cursor-pointer">
+        <span class="flex items-center justify-center w-32 h-32  bg-primary rounded-full mr-8 cursor-pointer">
           <i class="pi pi-angle-right text-[22px]"></i>
         </span>
-    </div>
-    <div class="flex justify-between items-start gap-8 profile-container">
-      <div class="bg-primary py-6 px-16 rounded-full title--small cursor-pointer profile-container__install-app">
-        <i class="pi pi-download mr-4"></i>
-        <span>Install App</span>
       </div>
-      <div
-        class="flex items-center justify-center rounded-full bg-primary h-32 w-32 cursor-pointer profile-container__bell">
-        <i class="pi pi-bell opacity-60"></i>
-      </div>
-      <figure class="bg-primary p-4 rounded-full h-32 w-32 cursor-pointer profile-container__profile">
-        <img class="rounded-full object-cover h-full w-full"
-             src="https://i.scdn.co/image/ab67757000003b82d44354387c953111f318e572" alt="">
-      </figure>
-    </div>
-  </div>
-  <div class="album-container h-72 bg-primary-highlight px-24 pt-20 pb-24 rounded-[8px]">
-    <div class="w-full flex gap-20 items-end">
-      <figure class="h-full w-[230px] album-cover cursor-pointer">
-        <img class="w-full h-full object-cover rounded-[6px]" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
-      </figure>
-      <div class="title-container--width">
-        <p>
-          {{ stateAlbum?.[0]?.type | titlecase }}
-        </p>
-
-        <div #container class="w-full">
-          <p #titleText [ngClass]="{'!text-[60px]': isOverflowing}"
-             class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{ selectedAlbum?.name }}</p>
+      <div class="flex justify-between items-start gap-8 profile-container">
+        <div class="bg-primary py-6 px-16 rounded-full title--small cursor-pointer profile-container__install-app">
+          <i class="pi pi-download mr-4"></i>
+          <span>Install App</span>
         </div>
-        <div class="flex items-center">
-          <figure class="bg-primary rounded-full h-24 w-24 cursor-pointer m-6">
-            <img class="rounded-full object-cover h-full w-full" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
-          </figure>
-          <span *ngIf="selectedAlbum?.name">{{ selectedAlbum?.name }}</span>
-          <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ selectedAlbum?.release_date }} </span>
-          <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ selectedAlbum?.total_tracks || 0 }} songs </span>
-          <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
-          <span> {{ selectedAlbum?.tracks?.limit }} min</span>
+        <div
+          class="flex items-center justify-center rounded-full bg-primary h-32 w-32 cursor-pointer profile-container__bell">
+          <i class="pi pi-bell opacity-60"></i>
         </div>
+        <figure class="bg-primary p-4 rounded-full h-32 w-32 cursor-pointer profile-container__profile">
+          <img class="rounded-full object-cover h-full w-full"
+               src="https://i.scdn.co/image/ab67757000003b82d44354387c953111f318e572" alt="">
+        </figure>
       </div>
     </div>
-  </div>
+    <div class="album-container h-72 bg-primary-highlight px-24 pt-20 pb-24 rounded-[8px]">
+      <div class="w-full flex gap-20 items-end">
+        <figure class="h-full w-[230px] album-cover cursor-pointer">
+          <img class="w-full h-full object-cover rounded-[6px]" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
+        </figure>
+        <div class="title-container--width">
+          <p>
+            {{ stateAlbum?.[0]?.type | titlecase }}
+          </p>
 
-  <div class="track-list-header bg-primary">
-    <div class="px-24 pt-24 flex items-center justify-between">
-      <div class="flex items-center justify-center gap-32">
-        <div class="bg-light-green flex items-center justify-center rounded-full w-[54px] h-[54px] cursor-pointer">
-          <span>
-            <svg class="w-[24px] h-[24px]">
-              <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
-            </svg>
-          </span>
-        </div>
-        <span class="cursor-pointer">
-          <i class="pi pi-heart-fill text-light-green text-[30px]"></i>
-        </span>
-        <span class="cursor-pointer">
-          <i class="pi pi-ellipsis-h text-[20px]"></i>
-        </span>
-      </div>
-      <div class="flex items-center text-sm">
-        <span class="mr-6">List</span>
-        <i class="pi pi-list cursor-pointer"></i>
-      </div>
-    </div>
-  </div>
-
-  <div class="track-list p-20 bg-primary">
-    <div class="flex justify-between items-center border-b-[0.1px] opacity-30 px-16 mb-12">
-      <div class="flex justify-center items-center gap-16">
-        <span>#</span>
-        <span>Title</span>
-      </div>
-      <i class="pi pi-clock opacity-90 mr-32"></i>
-    </div>
-    <div *ngFor="let track of selectedAlbum.tracks.items; let i=index">
-      <div class="flex justify-between items-center px-16 cursor-pointer hover:bg-primary-highlight rounded-[8px]">
-        <div class="flex items-center justify-center gap-16">
-          <p>{{i+1}}</p>
-          <div class="flex flex-col p-8">
-            <span>{{track.name}}</span>
-            <span class="text-sm opacity-50">{{track.artists[0]?.name}}</span>
+          <div #container class="w-full">
+            <p #titleText [ngClass]="{'!text-[60px]': isOverflowing}"
+               class="inline-block text-[90px] font-bold p-0 leading-[90%] pb-14">{{ selectedAlbum?.name }}</p>
+          </div>
+          <div class="flex items-center">
+            <figure class="bg-primary rounded-full h-24 w-24 cursor-pointer m-6">
+              <img class="rounded-full object-cover h-full w-full" src="{{selectedAlbum?.images?.[0]?.url}}" alt="">
+            </figure>
+            <span *ngIf="selectedAlbum?.name">{{ selectedAlbum?.name }}</span>
+            <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
+            <span> {{ selectedAlbum?.release_date }} </span>
+            <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
+            <span> {{ selectedAlbum?.total_tracks || 0 }} songs </span>
+            <span class="inline-flex items-center justify-center self-center w-4 h-4 bg-white rounded-full m-6"></span>
+            <span> {{ selectedAlbum?.tracks?.limit }} min</span>
           </div>
         </div>
-        <p> {{track.duration_ms}}</p>
       </div>
     </div>
-  </div>
-</section>
+
+    <div class="track-list-header bg-primary">
+      <div class="px-24 pt-24 flex items-center justify-between">
+        <div class="flex items-center justify-center gap-32">
+          <div class="bg-light-green flex items-center justify-center rounded-full w-[54px] h-[54px] cursor-pointer">
+          <span>
+            <svg class="w-[24px] h-[24px]">
+              <path
+                d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+            </svg>
+          </span>
+          </div>
+          <span class="cursor-pointer">
+          <i class="pi pi-heart-fill text-light-green text-[30px]"></i>
+        </span>
+          <span class="cursor-pointer">
+          <i class="pi pi-ellipsis-h text-[20px]"></i>
+        </span>
+        </div>
+        <div class="flex items-center text-sm">
+          <span class="mr-6">List</span>
+          <i class="pi pi-list cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-list p-20 bg-primary">
+      <div class="flex justify-between items-center border-b-[0.1px] opacity-30 px-16 mb-12">
+        <div class="flex justify-center items-center gap-16">
+          <span>#</span>
+          <span>Title</span>
+        </div>
+        <i class="pi pi-clock opacity-90 mr-32"></i>
+      </div>
+      <div *ngFor="let track of selectedAlbum.tracks.items; let i=index"
+           (mouseenter)="toggleHover(i)" (mouseleave)="toggleHover(-1)"
+           class="flex justify-between items-center px-16 hover:bg-primary-highlight rounded-[8px]">
+        <div class="flex items-center justify-center gap-16">
+          <div class="flex items-center h-24 w-24">
+            <span *ngIf="hoveredIndex !== i">{{ i + 1 }}</span>
+            <span *ngIf="hoveredIndex === i" class="text-white m-0 p-0">
+            <svg width="15" height="15" viewBox="0 0 24 24">
+              <path
+                d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"
+                fill="white"></path>
+            </svg>
+          </span>
+          </div>
+          <div class="flex flex-col p-8">
+            <span class="cursor-pointer">{{ track.name }}</span>
+            <span class="text-sm opacity-50 cursor-pointer">{{ track.artists[0]?.name }}</span>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <span [ngClass]="{'invisible': hoveredIndex !== i}" class="cursor-pointer">
+            <i class="pi pi-heart"></i>
+          </span>
+          <span class="mx-12">5:13</span>
+          <span [ngClass]="{'invisible': hoveredIndex !== i}" class="cursor-pointer">
+            <i class="pi pi-ellipsis-h"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 </ng-container>

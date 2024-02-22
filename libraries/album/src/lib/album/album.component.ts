@@ -20,6 +20,7 @@ export class AlbumComponent implements OnInit {
   stateAlbum: Album[] = [] as Album[];
   selectedStateAlbum: Album[] = [] as Album[];
   selectedAlbum!:Album;
+  hoveredIndex = -1;
 
   isOverflowing = false;
   @ViewChild('container') containerRef!: ElementRef;
@@ -84,6 +85,10 @@ export class AlbumComponent implements OnInit {
   //   console.log(title.scrollWidth >= container.scrollWidth)
   //   this.isOverflowing = title.scrollWidth >= container.scrollWidth;
   // }
+
+  toggleHover(index: number) {
+    this.hoveredIndex = index;
+  }
 }
 
 

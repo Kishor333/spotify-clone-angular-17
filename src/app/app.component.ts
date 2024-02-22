@@ -10,10 +10,11 @@ import { AuthorizeGuard } from '../../libraries/auth/src/lib/guard/authorize-gua
 import { SharedFacadeService } from '../../libraries/shared/src/lib/services/shared-facade.service';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { PrimeTemplate } from 'primeng/api';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, LoginComponent, AlbumComponent, NgForOf, ProgressBarModule],
+  imports: [RouterModule, LoginComponent, AlbumComponent, NgForOf, ProgressBarModule, SliderModule],
   selector: 'spotify-clone-angular-17-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
